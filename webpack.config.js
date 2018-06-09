@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -13,6 +14,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tag$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'riotjs-loader',
+          options: {
+            type: 'none'
+          }
+        },
+        enforce: 'pre'
+      },
+      {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
@@ -25,6 +37,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
+    new webpack.ProvidePlugin({
+      riot: 'riot'
+    })
   ]
 }

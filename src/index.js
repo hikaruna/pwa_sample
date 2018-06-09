@@ -1,3 +1,6 @@
+require('./app.tag');
+riot.mount('*');
+
 console.log('hello world!');
 
 const wait4Seconds = () => {
