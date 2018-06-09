@@ -6,6 +6,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist')
   },
+  devServer: {
+    contentBase: './dist'
+  },
+  mode: 'development',
   module: {
     rules: [
       {
